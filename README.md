@@ -1,2 +1,2 @@
 # INDIA_4_U
-This is project based on social work.
+This project is based on social work.
