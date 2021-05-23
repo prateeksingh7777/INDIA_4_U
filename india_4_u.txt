@@ -1,0 +1,246 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+#include<iomanip>
+using namespace std;
+
+class Medicine{
+    string name;
+    string med_name;
+    int mg;
+    string address;
+    int pincode1;
+    double phnumber;
+public:
+    void getmed();
+    void showmed() const;
+};
+
+class FOOD{
+    string pname;
+    string fitem;
+    int amount;
+    string paddress;
+    int pincode;
+    double pnumber;
+public :
+    void getfood();
+    void showfood() const;
+};
+void Medicine::getmed()
+{
+    cout<<"\n\nENTER YOUR NAME PLEASE : ";
+    cin.ignore();
+    getline(cin,name);
+    cout<<"\n\nENTER THE MEDICINE NAME : ";
+    getline(cin,med_name);
+    cout<<"\n\nENTER THE MG OF THE MEDICINE : ";
+    cin>>mg;
+    cout<<"\n(..............no numerical character is allowed in the address..........)\n";
+    cout<<"ENTER YOUR BLOCK AND AREA NAME : ";
+    cin.ignore();
+    getline(cin,address);
+    cout<<"\n\nENTER YOUR PINCODE : ";
+    cin>>pincode1;
+    cout<<"\n\nENTER YOUR PHONE NUMBER : ";
+    cin>>phnumber;
+}
+void Medicine::showmed() const
+{
+    cout<<"\nNAME OF THE PERSON : "<<name;
+   cout<<"\nMEDICINE NAME : "<<med_name;
+   cout<<"\nMG : "<<mg<<" MG";
+   cout<<"\nADDRESS : "<<address;
+   cout<<"\nPIN CODE : "<<pincode1;
+   cout<<"\nPHONE NO. : "<<phnumber;
+
+}
+void FOOD::getfood()
+{
+
+    cout<<"\n\nENTER YOUR NAME PLEASE : ";
+    cin.ignore();
+    getline(cin,pname);
+    cout<<"\n\nENTER THE FOOD ITEM NAME : ";
+    getline(cin,fitem);
+    cout<<"\n\nENTER THE AMOUNT IN KG : ";
+    cin>>amount;
+    cout<<"\n(..............no numerical character is allowed in the address..........)\n";
+    cout<<"ENTER YOUR BLOCK AND AREA NAME : ";
+    cin.ignore();
+    getline(cin,paddress);
+    cout<<"\n\nENTER YOUR PINCODE : ";
+    cin>>pincode;
+    cout<<"\n\nENTER YOUR PHONE NUMBER : ";
+    cin>>pnumber;
+
+}
+void FOOD::showfood() const
+{
+   cout<<"\nNAME OF THE PERSON : "<<pname;
+   cout<<"\nFOOD ITEM : "<<fitem;
+   cout<<"\nAMOUNT : "<<amount<<" KG";
+   cout<<"\nADDRESS : "<<paddress;
+   cout<<"\nPIN CODE : "<<pincode;
+   cout<<"\nPHONE NO. : "<<pnumber;
+
+}
+
+void start();
+void food();
+void donate();
+void list_food();
+void medicine();
+void donate_med();
+void list_med();
+
+
+int main()
+{
+    char p;
+	cout.setf(ios::fixed|ios::showpoint);
+	start();
+	do
+	{
+		system("cls");
+		cout<<"\n\n\n                                                WELCOME TO INDIA_4_U";
+		cout<<"\n\n\tIn every crisis, doubt or confusion, take the higher path - \n\tthe path of compassion, courage, understanding and love.";
+		cout<<"\n\n\t\tMUST REMEMBER THAT YOU ARE A HERO HOW !!!!";
+		cout<<"\n\n\t\t  01. FOOD";
+		cout<<"\n\n\t\t  02. MEDICINE";
+		cout<<"\n\n\t\t  03. EXIT";
+		cout<<"\n\n\t\t  select any from (1-3) ";
+		cin>>p;
+		switch(p)
+		{
+			case '1': food();
+				break;
+			case '2':medicine();
+				break;
+            case '3':
+                break;
+			default :cout<<"\a";
+		}
+    }while(p!='3');
+	return 0;
+}
+/* all declared functions */
+void start()
+{
+	cout<<"\n\n------*--------*--------*-------*-------*---------*------COVID-19-------*--------*-------*------*-------*--------*------";
+	cout<<"\n\n--------------------------------------------------------INDIA_4_U------------------------------------------------------";
+	cout<<"\n\n\n\n\tTHIS IS A PROGRAM WHERE YOU CAN DONATE OR GIVEAWAY FOOD AND MEDICINE\n\tTO THE NEEDY PEOPLES BY THE HELP OF NGO'S AND\n\tGREAT FOUNDATIONS WHO WORK FOR THE SAME !!";
+	cout<<"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t\t\tIDEA AND BUILD BY : PRATEEK KUMAR SINGH";
+
+	cin.get();
+}
+void food()
+{
+
+    char n;
+	system("cls");
+	cout<<"\n\n\n---------------------------------FOOD SECTION-----------------------------------------------";
+	cout<<"\n\n\t          1.DONATE FOOD";
+	cout<<"\n\n\t          2.LIST OF FOOD AVALAIBLE";
+	cout<<"\n\n\t          3.BACK TO MAIN MENU";
+	cout<<"\n\n\t          select any from (1-3) ";
+	cin>>n;
+	system("cls");
+	switch(n)
+	{
+	case '1':	donate(); break;
+	case '2':	list_food(); break;
+
+	case '3':	break;
+	default:	cout<<"\a"; food();
+	}
+}
+void donate()
+{
+	FOOD fo;
+	ofstream herefood;
+	herefood.open("food.info",ios::binary|ios::app);
+	fo.getfood();
+	herefood.write(reinterpret_cast<char *> (&fo), sizeof(FOOD));
+	herefood.close();
+    	cout<<"\n................FOOD DATA HAS BEEN REGISTER..............\n";
+    	cout<<"....................THANKS FOR YOUR HELP.................";
+	cin.ignore();
+	cin.get();
+}
+void list_food()
+{
+   FOOD fo;
+	ifstream therefood;
+	therefood.open("food.info",ios::binary);
+	if(!therefood)
+	{
+		cout<<"NOTHING IS THERE. PRESS ANY KEY TO CONTINUE......";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+	cout<<"\n\n\n---------LIST OF ALL FOOD DETAILS--------\n\n";
+	while(therefood.read(reinterpret_cast<char *> (&fo), sizeof(FOOD)))
+	{
+		fo.showfood();
+		cout<<"\n\n=======================================================================================\n";
+	}
+	therefood.close();
+	cin.ignore();
+	cin.get();
+}
+void medicine()
+{
+     char n;
+	system("cls");
+	cout<<"\n\n\n---------------------------------MEDICINE SECTION-----------------------------------------------";
+	cout<<"\n\n\t          1.GIVEAWAY MEDICINE";
+	cout<<"\n\n\t          2.LIST OF MEDICINE AVALAIBLE";
+	cout<<"\n\n\t          3.BACK TO MAIN MENU";
+	cout<<"\n\n\t          select any from (1-3) ";
+	cin>>n;
+	system("cls");
+	switch(n)
+	{
+	case '1':	donate_med(); break;
+	case '2':   list_med(); break;
+	case '3':	break;
+	default:	cout<<"\a"; medicine();
+	}
+}
+void donate_med()
+{
+    Medicine med;
+	ofstream heremed;
+	heremed.open("medicine.info",ios::binary|ios::app);
+	med.getmed();
+	heremed.write(reinterpret_cast<char *> (&med), sizeof(Medicine));
+	heremed.close();
+    	cout<<"\n................MEDICINE DATA HAS BEEN REGISTER..............\n";
+    	cout<<"....................THANKS FOR YOUR HELP.................";
+	cin.ignore();
+	cin.get();
+}
+void list_med()
+{
+    Medicine med;
+	ifstream theremed;
+	theremed.open("medicine.info",ios::binary);
+	if(!theremed)
+	{
+		cout<<"NOTHING IS THERE. PRESS ANY KEY TO CONTINUE......";
+		cin.ignore();
+		cin.get();
+		return;
+	}
+	cout<<"\n\n\n---------LIST OF ALL MEDICINE DETAILS--------\n\n";
+	while(theremed.read(reinterpret_cast<char *> (&med), sizeof(Medicine)))
+	{
+		med.showmed();
+		cout<<"\n\n=======================================================================================\n";
+	}
+	theremed.close();
+	cin.ignore();
+	cin.get();
+}
