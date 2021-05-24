@@ -4,11 +4,13 @@
 #include<iomanip>
 using namespace std;
 
+
 class Medicine{
-    string name;
+    string namef;
     string med_name;
     int mg;
-    string address;
+    string address_block;
+	string area1;
     int pincode1;
     double phnumber;
 public:
@@ -17,10 +19,11 @@ public:
 };
 
 class FOOD{
-    string pname;
+    string pnamef;
     string fitem;
     int amount;
-    string paddress;
+    string paddress_block;
+	string area2;
     int pincode;
     double pnumber;
 public :
@@ -29,17 +32,19 @@ public :
 };
 void Medicine::getmed()
 {
-    cout<<"\n\nENTER YOUR NAME PLEASE : ";
+    cout<<"\n\nENTER YOUR FIRST NAME PLEASE : ";
     cin.ignore();
-    getline(cin,name);
+    getline(cin,namef);
     cout<<"\n\nENTER THE MEDICINE NAME : ";
     getline(cin,med_name);
     cout<<"\n\nENTER THE MG OF THE MEDICINE : ";
     cin>>mg;
     cout<<"\n(..............no numerical character is allowed in the address..........)\n";
-    cout<<"ENTER YOUR BLOCK AND AREA NAME : ";
+    cout<<"ENTER YOUR AREA BLOCK : ";
     cin.ignore();
-    getline(cin,address);
+    getline(cin,address_block);
+	cout<<"ENTER YOUR AREA ADDRESS : ";
+    getline(cin,area1);
     cout<<"\n\nENTER YOUR PINCODE : ";
     cin>>pincode1;
     cout<<"\n\nENTER YOUR PHONE NUMBER : ";
@@ -47,10 +52,10 @@ void Medicine::getmed()
 }
 void Medicine::showmed() const
 {
-    cout<<"\nNAME OF THE PERSON : "<<name;
+    cout<<"\nNAME OF THE PERSON : "<<namef;
    cout<<"\nMEDICINE NAME : "<<med_name;
    cout<<"\nMG : "<<mg<<" MG";
-   cout<<"\nADDRESS : "<<address;
+   cout<<"\nADDRESS : "<<address_block<<" "<<area1;
    cout<<"\nPIN CODE : "<<pincode1;
    cout<<"\nPHONE NO. : "<<phnumber;
 
@@ -58,17 +63,19 @@ void Medicine::showmed() const
 void FOOD::getfood()
 {
 
-    cout<<"\n\nENTER YOUR NAME PLEASE : ";
+    cout<<"\n\nENTER YOUR FIRST NAME PLEASE : ";
     cin.ignore();
-    getline(cin,pname);
+    getline(cin,pnamef);
     cout<<"\n\nENTER THE FOOD ITEM NAME : ";
     getline(cin,fitem);
     cout<<"\n\nENTER THE AMOUNT IN KG : ";
     cin>>amount;
     cout<<"\n(..............no numerical character is allowed in the address..........)\n";
-    cout<<"ENTER YOUR BLOCK AND AREA NAME : ";
+    cout<<"ENTER YOUR AREA BLOCK : ";
     cin.ignore();
-    getline(cin,paddress);
+    getline(cin,paddress_block);
+	cout<<"ENTER YOUR AREA ADDRESS : ";
+    getline(cin,area2);
     cout<<"\n\nENTER YOUR PINCODE : ";
     cin>>pincode;
     cout<<"\n\nENTER YOUR PHONE NUMBER : ";
@@ -77,10 +84,10 @@ void FOOD::getfood()
 }
 void FOOD::showfood() const
 {
-   cout<<"\nNAME OF THE PERSON : "<<pname;
+   cout<<"\nNAME OF THE PERSON : "<<pnamef;
    cout<<"\nFOOD ITEM : "<<fitem;
    cout<<"\nAMOUNT : "<<amount<<" KG";
-   cout<<"\nADDRESS : "<<paddress;
+   cout<<"\nADDRESS : "<<paddress_block<<" "<<area2;
    cout<<"\nPIN CODE : "<<pincode;
    cout<<"\nPHONE NO. : "<<pnumber;
 
@@ -97,6 +104,7 @@ void list_med();
 
 int main()
 {
+    cout<<setprecision(0);
     char p;
 	cout.setf(ios::fixed|ios::showpoint);
 	start();
